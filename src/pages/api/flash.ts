@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { and, asc, eq } from 'drizzle-orm';
+import { asc, eq } from 'drizzle-orm';
 import { requireAdmin } from '../../lib/admin-auth';
 import { getActiveBusiness } from '../../lib/business';
 import { db } from '../../lib/db';
