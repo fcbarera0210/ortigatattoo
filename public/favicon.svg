@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="12" fill="#0a0a0a"/>
+  <g fill="none" stroke="#f5f5f5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- central stem -->
+    <path d="M32 54 C32 44 32 30 32 12"/>
+    <!-- leaf pairs (nettle) -->
+    <path d="M32 20 C24 18 18 20 15 26 C22 27 28 25 32 20 Z"/>
+    <path d="M32 20 C40 18 46 20 49 26 C42 27 36 25 32 20 Z"/>
+    <path d="M32 32 C22 30 15 32 11 39 C19 41 27 38 32 32 Z"/>
+    <path d="M32 32 C42 30 49 32 53 39 C45 41 37 38 32 32 Z"/>
+    <path d="M32 44 C25 43 20 45 17 50 C23 51 29 49 32 44 Z"/>
+    <path d="M32 44 C39 43 44 45 47 50 C41 51 35 49 32 44 Z"/>
+  </g>
+</svg>

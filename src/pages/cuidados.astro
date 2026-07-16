@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getActiveBusiness } from '../lib/business';
+
+export const prerender = false;
+
+const biz = await getActiveBusiness();
+const aftercare = biz?.aftercareContent?.trim() ?? '';
+---
+
+<BaseLayout title="Cuidados — Ortiga Tattoo">
+  <section class="mx-auto max-w-3xl px-4 py-12 md:px-6">
+    <div class="mb-8 border-b border-border pb-4">
+      <p class="text-xs uppercase tracking-[0.2em] text-muted">Post tatuaje</p>
+      <h1 class="mt-1 font-display text-3xl md:text-4xl">Cuidados</h1>
+    </div>
+
+    {
+      aftercare ? (
+        <div class="prose-aftercare">{aftercare}</div>
+      ) : (
+        <p class="text-muted">
+          Pronto vamos a publicar la guía de cuidados. Ante cualquier duda, escribinos por WhatsApp.
+        </p>
+      )
+    }
+
+    <div class="mt-10">
+      <a href="/reservar" class="btn-primary">Reservar sesión</a>
+    </div>
+  </section>
+</BaseLayout>

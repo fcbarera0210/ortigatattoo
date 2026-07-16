@@ -1,0 +1,46 @@
+---
+interface Props {
+  businessName: string;
+  address?: string | null;
+  mapsUrl?: string | null;
+  instagramUrl?: string | null;
+  whatsappNumber?: string | null;
+}
+
+const { businessName, address, mapsUrl, instagramUrl, whatsappNumber } = Astro.props;
+
+const whatsappHref = whatsappNumber ? `https://wa.me/${whatsappNumber.replace(/\D/g, '')}` : null;
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-border bg-bg py-12">
+  <div class="mx-auto max-w-6xl px-4 md:px-6">
+    <div class="flex flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-left">
+      <div>
+        <p class="font-display text-xl">{businessName}</p>
+        {address && <p class="mt-2 text-sm text-muted">{address}</p>}
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-5 text-sm">
+        {mapsUrl && (
+          <a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="nav-link">
+            Mapa
+          </a>
+        )}
+        {instagramUrl && (
+          <a href={instagramUrl} target="_blank" rel="noopener noreferrer" class="nav-link">
+            Instagram
+          </a>
+        )}
+        {whatsappHref && (
+          <a href={whatsappHref} target="_blank" rel="noopener noreferrer" class="nav-link">
+            WhatsApp
+          </a>
+        )}
+        <a href="/reservar" class="btn-primary px-4 py-2">Reservar</a>
+      </div>
+    </div>
+    <p class="mt-8 text-center text-xs text-muted">
+      © {year} {businessName} · La Plata, Argentina
+    </p>
+  </div>
+</footer>

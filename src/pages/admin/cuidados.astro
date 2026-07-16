@@ -1,0 +1,10 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import AdminPageHeader from '../../components/astro/AdminPageHeader.astro';
+import { AftercareEditor } from '../../components/react/AftercareEditor';
+---
+
+<AdminLayout>
+  <AdminPageHeader title="Cuidados" />
+  <AftercareEditor client:load />
+</AdminLayout>

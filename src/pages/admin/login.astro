@@ -1,0 +1,31 @@
+---
+import '../../styles/global.css';
+import { AdminLoginForm } from '../../components/react/AdminLoginForm';
+import { ToastHost } from '../../components/react/ToastHost';
+
+export const prerender = false;
+
+const authError = Astro.url.searchParams.get('error');
+---
+
+<!doctype html>
+<html lang="es" class="min-h-dvh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Admin — Ortiga Tattoo</title>
+  </head>
+  <body class="relative min-h-dvh overflow-x-hidden bg-bg text-ink">
+    <main class="relative z-10 flex min-h-dvh items-center justify-center px-4">
+      <AdminLoginForm client:load authError={authError} />
+    </main>
+    <ToastHost client:load />
+  </body>
+</html>

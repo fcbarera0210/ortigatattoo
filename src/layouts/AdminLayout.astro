@@ -1,0 +1,78 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import { AdminMobileNav } from '../components/react/AdminMobileNav';
+import { AdminSignOut } from '../components/react/AdminSignOut';
+import { ToastHost } from '../components/react/ToastHost';
+import { ConfirmHost } from '../components/react/ConfirmHost';
+
+const pathname = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/admin', label: 'Dashboard' },
+  { href: '/admin/agenda', label: 'Agenda' },
+  { href: '/admin/servicios', label: 'Servicios' },
+  { href: '/admin/flash', label: 'Flash' },
+  { href: '/admin/disponibilidad', label: 'Disponibilidad' },
+  { href: '/admin/clientes', label: 'Clientes' },
+  { href: '/admin/galeria', label: 'Galería' },
+  { href: '/admin/cuidados', label: 'Cuidados' },
+  { href: '/admin/configuracion', label: 'Config' },
+];
+
+function navClass(href: string) {
+  const active =
+    href === '/admin'
+      ? pathname === '/admin'
+      : pathname === href || pathname.startsWith(`${href}/`);
+  return active ? 'admin-nav-link admin-nav-link-active' : 'admin-nav-link';
+}
+---
+
+<!doctype html>
+<html lang="es" class="min-h-dvh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Admin — Ortiga Tattoo</title>
+    <ClientRouter />
+  </head>
+  <body class="min-h-dvh overflow-x-hidden bg-bg text-ink">
+    <header class="sticky top-0 z-50 border-b border-border bg-bg/90 backdrop-blur-md">
+      <div class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 md:px-6">
+        <a href="/admin" class="font-heading leading-tight">
+          <span class="block text-xl font-semibold tracking-wide md:text-2xl">
+            Ortiga <span class="italic text-muted">Tattoo</span>
+          </span>
+          <span class="mt-0.5 block text-[10px] uppercase tracking-[0.2em] text-muted">
+            Panel admin
+          </span>
+        </a>
+        <div class="flex items-center gap-2">
+          <nav class="hidden flex-wrap items-center gap-1 lg:flex">
+            {navLinks.map((link) => (
+              <a href={link.href} class={navClass(link.href)}>{link.label}</a>
+            ))}
+            <a href="/" class="admin-nav-link text-muted">Sitio público</a>
+          </nav>
+          <div class="hidden lg:block">
+            <AdminSignOut client:load />
+          </div>
+          <AdminMobileNav pathname={pathname} client:load />
+        </div>
+      </div>
+    </header>
+    <main class="relative z-10 mx-auto max-w-7xl px-4 py-8 md:px-6" transition:animate="fade">
+      <slot />
+    </main>
+    <ToastHost client:load />
+    <ConfirmHost client:load />
+  </body>
+</html>

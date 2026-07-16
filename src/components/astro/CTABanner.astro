@@ -1,0 +1,22 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = 'Tu próxima pieza empieza acá',
+  subtitle = 'Reservá tu sesión o elegí un diseño flash. Te confirmamos por WhatsApp.',
+} = Astro.props;
+---
+
+<section class="mx-auto max-w-6xl px-4 py-16 md:px-6">
+  <div class="border border-border bg-white/[0.02] px-6 py-14 text-center md:px-12">
+    <h2 class="mx-auto max-w-2xl font-display text-3xl md:text-4xl">{title}</h2>
+    <p class="mx-auto mt-4 max-w-xl text-muted">{subtitle}</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a href="/reservar" class="btn-primary">Reservar ahora</a>
+      <a href="/disponibles" class="btn-ghost">Ver disponibles</a>
+    </div>
+  </div>
+</section>

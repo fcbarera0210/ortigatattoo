@@ -1,0 +1,73 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import { MobileNav } from '../components/react/MobileNav';
+import SiteFooter from '../components/astro/SiteFooter.astro';
+import { ToastHost } from '../components/react/ToastHost';
+import { getActiveBusiness } from '../lib/business';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const biz = await getActiveBusiness();
+const businessName = biz?.name ?? 'Ortiga Tattoo';
+
+const {
+  title = businessName,
+  description = biz?.description ?? 'Estudio de tatuajes. Reserva tu turno online.',
+} = Astro.props;
+
+const navLinks = [
+  { href: '/', label: 'Inicio' },
+  { href: '/disponibles', label: 'Disponibles' },
+  { href: '/cuidados', label: 'Cuidados' },
+  { href: '/mis-reservas', label: 'Mis reservas' },
+];
+---
+
+<!doctype html>
+<html lang="es" class="min-h-dvh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body class="flex min-h-dvh flex-col overflow-x-hidden bg-bg text-ink">
+    <header class="sticky top-0 z-50 border-b border-border bg-bg/90 backdrop-blur-md">
+      <nav class="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 md:px-6">
+        <a href="/" class="font-heading text-2xl font-semibold tracking-wide md:text-3xl">
+          Ortiga <span class="italic text-muted">Tattoo</span>
+        </a>
+        <div class="hidden items-center gap-7 lg:flex">
+          {navLinks.map((link) => (
+            <a href={link.href} class="nav-link pb-1">{link.label}</a>
+          ))}
+          <a href="/reservar" class="btn-primary px-5 py-2.5">Reservar</a>
+        </div>
+        <MobileNav client:load />
+      </nav>
+    </header>
+    <main class="relative z-10 mx-auto w-full max-w-6xl flex-1 px-4 py-8 md:px-6 md:py-12" transition:animate="fade">
+      <slot />
+    </main>
+    <SiteFooter
+      businessName={businessName}
+      address={biz?.address}
+      mapsUrl={biz?.mapsUrl}
+      instagramUrl={biz?.instagramUrl}
+      whatsappNumber={biz?.whatsappNumber}
+    />
+    <ToastHost client:load />
+  </body>
+</html>

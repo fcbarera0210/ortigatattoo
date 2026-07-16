@@ -1,0 +1,10 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import AdminPageHeader from '../../components/astro/AdminPageHeader.astro';
+import { BusinessConfig } from '../../components/react/BusinessConfig';
+---
+
+<AdminLayout>
+  <AdminPageHeader title="Configuración" />
+  <BusinessConfig client:load />
+</AdminLayout>

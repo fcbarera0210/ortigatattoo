@@ -1,0 +1,10 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import AdminPageHeader from '../../components/astro/AdminPageHeader.astro';
+import { ServicesManager } from '../../components/react/ServicesManager';
+---
+
+<AdminLayout>
+  <AdminPageHeader title="Servicios" />
+  <ServicesManager client:load />
+</AdminLayout>

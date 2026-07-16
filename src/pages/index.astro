@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/astro/Hero.astro';
+import VisitSection from '../components/astro/VisitSection.astro';
+import CTABanner from '../components/astro/CTABanner.astro';
+import { GallerySection } from '../components/react/GallerySection';
+import { getActiveBusiness } from '../lib/business';
+import { DAYS_ORDER, DAY_LABELS } from '../lib/schedule';
+import { db } from '../lib/db';
+import { availabilityBlocks, galleryPhotos } from '../lib/db/schema';
+import { eq, asc } from 'drizzle-orm';
+
+export const prerender = false;
+
+const biz = await getActiveBusiness();
+
+const avail = biz
+  ? await db.select().from(availabilityBlocks).where(eq(availabilityBlocks.businessId, biz.id))
+  : [];
+
+const scheduleByDay = DAYS_ORDER.map((day) => ({
+  day: DAY_LABELS[day],
+  ranges: avail
+    .filter((a) => a.dayOfWeek === day && a.active)
+    .map((a) => `${a.startTime} – ${a.endTime}`),
+})).filter((s) => s.ranges.length > 0);
+
+const gallery = biz
+  ? await db
+      .select({ id: galleryPhotos.id, url: galleryPhotos.url })
+      .from(galleryPhotos)
+      .where(eq(galleryPhotos.businessId, biz.id))
+      .orderBy(asc(galleryPhotos.sortOrder), asc(galleryPhotos.createdAt))
+  : [];
+
+const galleryPreview = gallery.slice(0, 8);
+---
+
+<BaseLayout>
+  <Hero
+    name={biz?.name ?? 'Ortiga Tattoo'}
+    description={biz?.description ??
+      'Tatuajes con carácter en La Plata. Diseños flash y piezas personalizadas. Reservá tu sesión online.'}
+  />
+
+  {galleryPreview.length > 0 && <GallerySection photos={galleryPreview} heading="Trabajos" client:load />}
+
+  <VisitSection schedule={scheduleByDay} address={biz?.address} mapsUrl={biz?.mapsUrl} />
+
+  <CTABanner />
+</BaseLayout>

@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { MyBookingsLookup } from '../components/react/MyBookingsLookup';
+
+export const prerender = false;
+---
+
+<BaseLayout title="Mis reservas — Ortiga Tattoo">
+  <section class="mx-auto max-w-4xl px-4 py-12 md:px-6">
+    <MyBookingsLookup client:load />
+  </section>
+</BaseLayout>
