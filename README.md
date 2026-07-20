@@ -26,7 +26,7 @@ Timezone: `America/Argentina/Buenos_Aires` · Moneda: ARS
 cd ortigatattoo
 npm install
 cp .env.example .env
-# Editar DATABASE_URL, AUTH_SECRET, ADMIN_SEED_*, BLOB_READ_WRITE_TOKEN, BLOB_STORE_ID_STORE_ID
+# Editar DATABASE_URL, AUTH_SECRET, ADMIN_SEED_*, BLOB_STORE_ID_WEBHOOK_PUBLIC_KEY, BLOB_STORE_ID_STORE_ID
 npm run db:push
 npm run db:seed
 npm run dev
@@ -43,7 +43,7 @@ Abre [http://localhost:4321](http://localhost:4321).
 | `ADMIN_SEED_USERNAME` | Usuario admin inicial |
 | `ADMIN_SEED_PASSWORD` | Contraseña admin inicial |
 | `PUBLIC_BUSINESS_SLUG` | Default: `ortiga-tattoo` |
-| `BLOB_READ_WRITE_TOKEN` | Token Vercel Blob |
+| `BLOB_STORE_ID_WEBHOOK_PUBLIC_KEY` | Token Vercel Blob |
 | `BLOB_STORE_ID_STORE_ID` | ID del Blob store (`store_...`) |
 
 El timezone `America/Argentina/Buenos_Aires` está fijado en código (`src/lib/datetime.ts`). No uses la variable `TZ` en Vercel: está reservada.
@@ -91,6 +91,6 @@ Login → Dashboard, Agenda (confirmar / rechazar / extender / WhatsApp), Servic
 - [ ] Repo GitHub `ortigatattoo`
 - [ ] Proyecto Vercel vinculado
 - [ ] Neon DB + `DATABASE_URL`
-- [ ] Blob store + `BLOB_READ_WRITE_TOKEN` + `BLOB_STORE_ID_STORE_ID`
+- [ ] Blob store + `BLOB_STORE_ID_WEBHOOK_PUBLIC_KEY` + `BLOB_STORE_ID_STORE_ID`
 - [ ] `AUTH_SECRET` + seed admin
 - [ ] Seed y smoke test: reservar → confirmar en admin

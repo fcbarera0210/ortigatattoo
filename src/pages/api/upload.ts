@@ -34,7 +34,7 @@ function uploadErrorResponse(e: unknown): Response {
     return new Response(
       JSON.stringify({
         error:
-          'Falta el token de Blob (BLOB_READ_WRITE_TOKEN). Configuralo en .env / Vercel y reinicia.',
+          'Falta el token de Blob (BLOB_STORE_ID_WEBHOOK_PUBLIC_KEY). Configuralo en .env / Vercel y reinicia.',
       }),
       { status: 500, headers: { 'Content-Type': 'application/json' } },
     );

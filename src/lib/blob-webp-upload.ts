@@ -18,7 +18,9 @@ export function getBlobStoreId(): string | undefined {
 
 export function getBlobToken(): string {
   const token =
-    readEnv('BLOB_READ_WRITE_TOKEN') || readEnv('BLOB_STORE_ID_READ_WRITE_TOKEN');
+    readEnv('BLOB_STORE_ID_WEBHOOK_PUBLIC_KEY') ||
+    readEnv('BLOB_READ_WRITE_TOKEN') ||
+    readEnv('BLOB_STORE_ID_READ_WRITE_TOKEN');
   if (!token) {
     throw new Error('BLOB_TOKEN_MISSING');
   }
