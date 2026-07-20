@@ -5,7 +5,7 @@ import { requireAdmin } from '../../lib/admin-auth';
 import { getActiveBusiness } from '../../lib/business';
 import { db } from '../../lib/db';
 import { galleryPhotos } from '../../lib/db/schema';
-import { getBlobToken } from '../../lib/blob-webp-upload';
+import { getBlobAuthOptions } from '../../lib/blob-webp-upload';
 import { GALLERY_MAX_PHOTOS, isValidBlobUrl } from '../../lib/gallery/constants';
 
 export const prerender = false;
@@ -151,7 +151,7 @@ export const DELETE: APIRoute = async (context) => {
 
   if (isValidBlobUrl(photo.url)) {
     try {
-      await del(photo.url, { token: getBlobToken() });
+      await del(photo.url, getBlobAuthOptions());
     } catch (e) {
       console.error('Failed to delete blob:', e);
     }

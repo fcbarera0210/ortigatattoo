@@ -5,7 +5,7 @@ import { requireAdmin } from '../../lib/admin-auth';
 import { getActiveBusiness } from '../../lib/business';
 import {
   putPublicWebpBlob,
-  getBlobToken,
+  getBlobAuthOptions,
   WEBP_BLOB_MAX_BYTES,
 } from '../../lib/blob-webp-upload';
 import { BLOB_DOMAIN } from '../../lib/gallery/constants';
@@ -33,7 +33,8 @@ function uploadErrorResponse(e: unknown): Response {
   if (code === 'BLOB_TOKEN_MISSING') {
     return new Response(
       JSON.stringify({
-        error: 'BLOB_READ_WRITE_TOKEN no configurado. Añádelo a .env y reinicia el servidor.',
+        error:
+          'Falta el token de Blob (BLOB_READ_WRITE_TOKEN). Configuralo en .env / Vercel y reinicia.',
       }),
       { status: 500, headers: { 'Content-Type': 'application/json' } },
     );
@@ -70,7 +71,7 @@ export const DELETE: APIRoute = async (context) => {
       });
     }
 
-    await del(urls as string[], { token: getBlobToken() });
+    await del(urls as string[], getBlobAuthOptions());
     return new Response(null, { status: 204 });
   } catch (e) {
     console.error('Delete blob error:', e);
