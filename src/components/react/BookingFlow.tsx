@@ -333,7 +333,7 @@ export function BookingFlow({ initialServiceId, initialFlashId }: BookingFlowPro
 
         <div className="mb-6 flex gap-2">
           {[1, 2, 3, 4].map((s) => (
-            <div key={s} className={`h-1 flex-1 rounded-full transition-colors ${step >= s ? 'bg-ink' : 'bg-border'}`} />
+            <div key={s} className={`h-1 flex-1 rounded-full transition-colors ${step >= s ? 'bg-accent' : 'bg-border'}`} />
           ))}
         </div>
 
@@ -341,7 +341,7 @@ export function BookingFlow({ initialServiceId, initialFlashId }: BookingFlowPro
           <div className="space-y-8">
             {flashes.length > 0 && (
               <div>
-                <h3 className="mb-3 text-sm uppercase tracking-[0.2em] text-muted">Flash disponibles</h3>
+                <h3 className="label-mono mb-3">Flash disponibles</h3>
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                   {flashes.map((f) => {
                     const price = formatPriceLabel(f.priceCents, f.priceDisplay);
@@ -371,7 +371,7 @@ export function BookingFlow({ initialServiceId, initialFlashId }: BookingFlowPro
 
             {services.length > 0 && (
               <div>
-                <h3 className="mb-3 text-sm uppercase tracking-[0.2em] text-muted">Servicios</h3>
+                <h3 className="label-mono mb-3">Servicios</h3>
                 <div className="space-y-3">
                   {services.map((s) => {
                     const price = formatPriceLabel(s.priceCents, s.priceDisplay);
@@ -380,7 +380,7 @@ export function BookingFlow({ initialServiceId, initialFlashId }: BookingFlowPro
                         key={s.id}
                         type="button"
                         onClick={() => selectService(s)}
-                        className="w-full rounded-md border border-border bg-surface p-4 text-left transition hover:border-ink/40"
+                        className="w-full border border-border bg-surface p-4 text-left transition hover:border-accent"
                       >
                         <div className="flex items-start justify-between gap-4">
                           <div>
@@ -477,56 +477,56 @@ export function BookingFlow({ initialServiceId, initialFlashId }: BookingFlowPro
             </p>
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label className="mb-1 block text-xs uppercase tracking-wider text-muted" htmlFor="name">
+                <label className="label-mono mb-1 block" htmlFor="name">
                   Nombre completo
                 </label>
                 <input id="name" required minLength={2} value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} className="input-field" />
               </div>
               <div>
-                <label className="mb-1 block text-xs uppercase tracking-wider text-muted" htmlFor="email">
+                <label className="label-mono mb-1 block" htmlFor="email">
                   Email
                 </label>
                 <input id="email" type="email" required value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} className="input-field" />
               </div>
               <div>
-                <label className="mb-1 block text-xs uppercase tracking-wider text-muted" htmlFor="phone">
+                <label className="label-mono mb-1 block" htmlFor="phone">
                   Teléfono
                 </label>
                 <input id="phone" type="tel" required value={form.phone} onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))} className="input-field" placeholder="2211234567" />
               </div>
               <div>
-                <label className="mb-1 block text-xs uppercase tracking-wider text-muted" htmlFor="instagram">
+                <label className="label-mono mb-1 block" htmlFor="instagram">
                   Instagram (opcional)
                 </label>
                 <input id="instagram" value={form.instagram} onChange={(e) => setForm((f) => ({ ...f, instagram: e.target.value }))} className="input-field" placeholder="@usuario" />
               </div>
               <div>
-                <label className="mb-1 block text-xs uppercase tracking-wider text-muted" htmlFor="bodyZone">
+                <label className="label-mono mb-1 block" htmlFor="bodyZone">
                   Zona del cuerpo
                 </label>
                 <input id="bodyZone" value={form.bodyZone} onChange={(e) => setForm((f) => ({ ...f, bodyZone: e.target.value }))} className="input-field" placeholder="Antebrazo, pierna..." />
               </div>
               <div>
-                <label className="mb-1 block text-xs uppercase tracking-wider text-muted" htmlFor="sizeNotes">
+                <label className="label-mono mb-1 block" htmlFor="sizeNotes">
                   Tamaño aprox.
                 </label>
                 <input id="sizeNotes" value={form.sizeNotes} onChange={(e) => setForm((f) => ({ ...f, sizeNotes: e.target.value }))} className="input-field" placeholder="10 cm, palma de la mano..." />
               </div>
             </div>
             <div>
-              <label className="mb-1 block text-xs uppercase tracking-wider text-muted" htmlFor="styleNotes">
+              <label className="label-mono mb-1 block" htmlFor="styleNotes">
                 Estilo
               </label>
               <input id="styleNotes" value={form.styleNotes} onChange={(e) => setForm((f) => ({ ...f, styleNotes: e.target.value }))} className="input-field" placeholder="Fine line, blackwork, color..." />
             </div>
             <div>
-              <label className="mb-1 block text-xs uppercase tracking-wider text-muted" htmlFor="description">
+              <label className="label-mono mb-1 block" htmlFor="description">
                 Contanos tu idea
               </label>
               <textarea id="description" value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} className="input-field min-h-[90px]" />
             </div>
             <div>
-              <label className="mb-1 block text-xs uppercase tracking-wider text-muted" htmlFor="reference">
+              <label className="label-mono mb-1 block" htmlFor="reference">
                 Imagen de referencia (opcional)
               </label>
               <input

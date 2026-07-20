@@ -35,7 +35,7 @@ export function AdminLoginForm({ authError }: Props) {
 
   if (loading) {
     return (
-      <div className="card mx-auto w-full max-w-md text-center">
+      <div className="card gothic-frame mx-auto w-full max-w-md text-center">
         <p className="text-muted">Preparando formulario...</p>
       </div>
     );
@@ -43,8 +43,8 @@ export function AdminLoginForm({ authError }: Props) {
 
   if (bootError || !csrfToken) {
     return (
-      <div className="card mx-auto w-full max-w-md text-center">
-        <p className="font-heading text-2xl font-semibold">No se pudo iniciar sesión</p>
+      <div className="card gothic-frame mx-auto w-full max-w-md text-center">
+        <p className="font-heading text-2xl font-semibold tracking-[0.08em]">No se pudo iniciar sesión</p>
         <p className="mt-2 text-sm text-muted">
           {bootError || 'Revisa que AUTH_SECRET esté configurado en .env'}
         </p>
@@ -57,19 +57,20 @@ export function AdminLoginForm({ authError }: Props) {
       method="POST"
       action="/api/auth/callback/credentials"
       onSubmit={() => setSubmitting(true)}
-      className="card mx-auto w-full max-w-md space-y-5"
+      className="card gothic-frame-double mx-auto w-full max-w-md space-y-5"
     >
       <input type="hidden" name="csrfToken" value={csrfToken} />
       <input type="hidden" name="callbackUrl" value="/admin" />
 
       <div>
-        <p className="text-xs uppercase tracking-[0.25em] text-muted">Panel admin</p>
-        <h1 className="font-heading mt-2 text-4xl font-semibold">Ortiga Tattoo</h1>
-        <p className="mt-2 text-sm text-muted">Inicia sesión para gestionar el estudio.</p>
+        <p className="section-eyebrow">Panel admin</p>
+        <h1 className="font-heading mt-2 text-4xl font-semibold tracking-[0.1em]">Ortiga Tattoo</h1>
+        <div className="divider-crimson mt-4" />
+        <p className="mt-3 text-sm text-muted">Inicia sesión para gestionar el estudio.</p>
       </div>
 
       <div>
-        <label className="mb-1 block text-sm text-muted" htmlFor="username">
+        <label className="label-mono mb-1 block" htmlFor="username">
           Usuario
         </label>
         <input
@@ -83,7 +84,7 @@ export function AdminLoginForm({ authError }: Props) {
       </div>
 
       <div>
-        <label className="mb-1 block text-sm text-muted" htmlFor="password">
+        <label className="label-mono mb-1 block" htmlFor="password">
           Contraseña
         </label>
         <input
@@ -99,7 +100,7 @@ export function AdminLoginForm({ authError }: Props) {
       <button type="submit" disabled={submitting} className="btn-primary w-full">
         {submitting ? 'Entrando...' : 'Entrar'}
       </button>
-      <a href="/" className="block text-center text-sm text-muted hover:text-ink">
+      <a href="/" className="block text-center font-mono text-xs uppercase tracking-[0.14em] text-muted hover:text-accent">
         ← Volver al sitio
       </a>
     </form>

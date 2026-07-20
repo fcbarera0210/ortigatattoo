@@ -150,7 +150,7 @@ export function ClientsList() {
                   type="button"
                   onClick={() => setSelectedId(client.id)}
                   className={`w-full rounded-md border p-3 text-left transition ${
-                    isSelected ? 'client-list-item-active' : 'border-border hover:border-ink/40'
+                    isSelected ? 'client-list-item-active' : 'border-border hover:border-accent'
                   }`}
                 >
                   <p className="font-medium">{client.name}</p>

@@ -130,7 +130,7 @@ export function BookingDayCard({
   return (
     <div className={`calendar-day-item flex flex-col gap-3 ${compact ? 'p-3' : 'p-4'}`}>
       <div className="flex min-w-0 items-start gap-3">
-        <div className="min-h-11 min-w-[56px] shrink-0 rounded-md bg-ink px-2 py-2 text-center text-xs font-bold text-bg">
+        <div className="min-h-11 min-w-[56px] shrink-0 border border-accent bg-accent/20 px-2 py-2 text-center font-mono text-xs font-bold text-ink">
           {timeLabel}
         </div>
         <div className="min-w-0 flex-1">

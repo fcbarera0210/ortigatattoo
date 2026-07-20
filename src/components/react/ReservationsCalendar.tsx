@@ -354,7 +354,7 @@ export function ReservationsCalendar({
       <div className="space-y-2">
         {dayBookings.map((booking) => (
           <div key={booking.id} className="calendar-day-item flex items-center gap-4 p-3">
-            <div className="min-w-[56px] rounded-md bg-ink px-2 py-1.5 text-center text-xs font-bold text-bg">
+            <div className="min-w-[56px] border border-accent bg-accent/20 px-2 py-1.5 text-center font-mono text-xs font-bold text-ink">
               {formatTime(new Date(booking.startAt))}
             </div>
             <div className="min-w-0 flex-1">
@@ -446,7 +446,7 @@ export function ReservationsCalendar({
         <div className="card w-full max-w-lg space-y-4" onClick={(e) => e.stopPropagation()}>
           <div className="flex items-start justify-between gap-3">
             <h3 className="font-heading text-xl font-semibold capitalize">{formatDate(selectedDate)}</h3>
-            <button type="button" onClick={closeDetail} className="text-muted hover:text-ink" aria-label="Cerrar">
+            <button type="button" onClick={closeDetail} className="text-muted hover:text-accent" aria-label="Cerrar">
               ✕
             </button>
           </div>

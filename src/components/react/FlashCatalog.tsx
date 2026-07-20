@@ -41,8 +41,8 @@ export function FlashCatalog() {
               <img src={flash.imageUrl} alt={flash.title} loading="lazy" className="h-full w-full object-cover" />
             </div>
             <div className="p-3">
-              <p className="truncate font-medium">{flash.title}</p>
-              <p className="mt-1 text-xs text-muted">
+              <p className="truncate font-heading text-sm tracking-[0.06em]">{flash.title}</p>
+              <p className="mt-1 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-muted">
                 {flash.reserved ? 'Reservado' : [`${flash.durationMin} min`, price].filter(Boolean).join(' · ')}
               </p>
             </div>

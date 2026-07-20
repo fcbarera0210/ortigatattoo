@@ -147,11 +147,13 @@ export function MyBookingsLookup() {
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
-      <form onSubmit={handleSearch} className="card space-y-4">
-        <h1 className="font-heading text-3xl font-semibold">Mis reservas</h1>
+      <form onSubmit={handleSearch} className="card gothic-frame space-y-4">
+        <p className="section-eyebrow">Consultas</p>
+        <h1 className="font-heading text-3xl font-semibold tracking-[0.1em]">Mis reservas</h1>
+        <div className="divider-crimson" />
         <p className="text-sm text-muted">Ingresá tu email para ver el estado de tus turnos.</p>
         <div>
-          <label className="mb-1 block text-xs uppercase tracking-wider text-muted" htmlFor="lookup-email">
+          <label className="label-mono mb-1 block" htmlFor="lookup-email">
             Email
           </label>
           <input
@@ -221,7 +223,7 @@ export function MyBookingsLookup() {
                       {isRescheduling && (
                         <div className="space-y-3 rounded-md border border-border p-3">
                           <div>
-                            <label className="mb-1 block text-xs uppercase tracking-wider text-muted">Nueva fecha</label>
+                            <label className="label-mono mb-1 block">Nueva fecha</label>
                             <input
                               type="date"
                               value={reDate}

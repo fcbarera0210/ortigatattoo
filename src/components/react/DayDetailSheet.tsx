@@ -39,7 +39,7 @@ export function DayDetailSheet({
 
         <div className="flex items-start justify-between gap-3 px-4 pt-2">
           <h3 className="font-heading text-xl font-semibold capitalize">{dateLabel}</h3>
-          <button type="button" onClick={onClose} className="min-h-11 min-w-11 text-muted hover:text-ink" aria-label="Cerrar">
+          <button type="button" onClick={onClose} className="min-h-11 min-w-11 text-muted hover:text-accent" aria-label="Cerrar">
             ✕
           </button>
         </div>

@@ -57,7 +57,7 @@ export function AdminMobileNav({ pathname }: AdminMobileNavProps) {
     <div ref={rootRef} className="relative lg:hidden">
       <button
         type="button"
-        className="flex h-10 w-10 items-center justify-center rounded-md border border-border bg-surface text-ink"
+        className="flex h-10 w-10 items-center justify-center border border-border bg-surface text-ink"
         aria-expanded={open}
         aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
         onClick={() => setOpen((v) => !v)}
@@ -67,7 +67,7 @@ export function AdminMobileNav({ pathname }: AdminMobileNavProps) {
         </svg>
       </button>
       {open && (
-        <div className="absolute right-0 top-[calc(100%+0.5rem)] z-50 w-[min(18rem,calc(100vw-2rem))] rounded-lg border border-border bg-surface/95 py-2 shadow-lg backdrop-blur-md">
+        <div className="absolute right-0 top-[calc(100%+0.5rem)] z-50 w-[min(18rem,calc(100vw-2rem))] border border-border bg-surface/95 py-2 shadow-lg backdrop-blur-md">
           {links.map((link) => (
             <a
               key={link.href}

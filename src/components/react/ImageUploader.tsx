@@ -119,8 +119,8 @@ export function ImageUploader({
           disabled
             ? 'cursor-not-allowed border-border/50 opacity-50'
             : dragOver
-              ? 'border-ink bg-surface-light'
-              : 'border-border hover:border-ink/40'
+              ? 'border-accent bg-surface-light'
+              : 'border-border hover:border-accent'
         }`}
       >
         <input
@@ -135,7 +135,7 @@ export function ImageUploader({
           <div className="mx-auto max-w-sm text-left">
             <p className="text-sm font-medium">{UPLOAD_STEP_LABELS[uploadStep]}</p>
             <div className="mt-2 h-2 overflow-hidden rounded-full bg-border">
-              <div className="h-full bg-ink transition-all duration-500" style={{ width: `${uploadProgress}%` }} />
+              <div className="h-full bg-accent transition-all duration-500" style={{ width: `${uploadProgress}%` }} />
             </div>
             <p className="mt-1 text-xs text-muted">{uploadProgress}%</p>
           </div>

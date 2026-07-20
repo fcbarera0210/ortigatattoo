@@ -17,8 +17,8 @@ const year = new Date().getFullYear();
   <div class="mx-auto max-w-6xl px-4 md:px-6">
     <div class="flex flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-left">
       <div>
-        <p class="font-display text-xl">{businessName}</p>
-        {address && <p class="mt-2 text-sm text-muted">{address}</p>}
+        <p class="font-display text-xl tracking-[0.12em]">{businessName}</p>
+        {address && <p class="mt-2 font-mono text-xs text-muted">{address}</p>}
       </div>
       <div class="flex flex-wrap items-center justify-center gap-5 text-sm">
         {mapsUrl && (
@@ -39,7 +39,7 @@ const year = new Date().getFullYear();
         <a href="/reservar" class="btn-primary px-4 py-2">Reservar</a>
       </div>
     </div>
-    <p class="mt-8 text-center text-xs text-muted">
+    <p class="mt-8 text-center font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
       © {year} {businessName} · La Plata, Argentina
     </p>
   </div>

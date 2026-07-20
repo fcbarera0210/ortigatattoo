@@ -13,8 +13,9 @@ export function GallerySection({ photos }: GallerySectionProps) {
   return (
     <section id="galeria" className="mt-24">
       <div className="mb-8 border-b border-border pb-4">
-        <p className="text-xs uppercase tracking-[0.25em] text-muted">Galería</p>
-        <h2 className="font-heading mt-2 text-4xl font-semibold md:text-5xl">Trabajos</h2>
+        <p className="section-eyebrow">Galería</p>
+        <h2 className="font-heading mt-2 text-4xl font-semibold tracking-[0.1em] md:text-5xl">Trabajos</h2>
+        <div className="divider-crimson mt-4" />
       </div>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
