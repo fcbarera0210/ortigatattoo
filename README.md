@@ -44,7 +44,8 @@ Abre [http://localhost:4321](http://localhost:4321).
 | `ADMIN_SEED_PASSWORD` | Contraseña admin inicial |
 | `PUBLIC_BUSINESS_SLUG` | Default: `ortiga-tattoo` |
 | `BLOB_READ_WRITE_TOKEN` | Token Vercel Blob |
-| `TZ` | `America/Argentina/Buenos_Aires` |
+
+El timezone `America/Argentina/Buenos_Aires` está fijado en código (`src/lib/datetime.ts`). No uses la variable `TZ` en Vercel: está reservada.
 
 ## Rutas públicas
 

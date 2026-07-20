@@ -27,6 +27,15 @@ export type CalendarBooking = {
   clientEmail?: string;
   clientPhone?: string;
   serviceName: string;
+  bodyZone?: string | null;
+  sizeNotes?: string | null;
+  styleNotes?: string | null;
+  description?: string | null;
+  instagramHandle?: string | null;
+  referenceImageUrl?: string | null;
+  adminNotes?: string | null;
+  flashDesignId?: string | null;
+  flashTitle?: string | null;
 };
 
 type ReservationsCalendarProps = {

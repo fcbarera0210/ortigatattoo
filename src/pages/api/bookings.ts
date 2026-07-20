@@ -6,15 +6,13 @@ import { createBooking } from '../../lib/booking/conflicts';
 import { rangeHasConflict } from '../../lib/booking/slots';
 import { db } from '../../lib/db';
 import { bookingBlocks, bookings, clients, flashDesigns, services } from '../../lib/db/schema';
-import { endOfDay, parseLocalDateTimeInput, startOfDay } from '../../lib/datetime';
+import { endOfDay, parseInstantOrLocalDateTime, startOfDay } from '../../lib/datetime';
 import { checkRateLimit } from '../../lib/rate-limit';
 
 export const prerender = false;
 
-const DATETIME_LOCAL_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
-
 function parseDateInput(value: string): Date {
-  return DATETIME_LOCAL_RE.test(value) ? parseLocalDateTimeInput(value) : new Date(value);
+  return parseInstantOrLocalDateTime(value);
 }
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {

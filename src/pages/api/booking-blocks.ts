@@ -4,7 +4,7 @@ import { requireAdmin } from '../../lib/admin-auth';
 import { getActiveBusiness } from '../../lib/business';
 import { db } from '../../lib/db';
 import { bookingBlocks } from '../../lib/db/schema';
-import { parseLocalDateTimeInput } from '../../lib/datetime';
+import { parseInstantOrLocalDateTime } from '../../lib/datetime';
 
 export const prerender = false;
 
@@ -49,8 +49,8 @@ export const POST: APIRoute = async (context) => {
     return new Response(JSON.stringify({ error: 'startAt y endAt requeridos' }), { status: 400 });
   }
 
-  const startAt = parseLocalDateTimeInput(body.startAt);
-  const endAt = parseLocalDateTimeInput(body.endAt);
+  const startAt = parseInstantOrLocalDateTime(body.startAt);
+  const endAt = parseInstantOrLocalDateTime(body.endAt);
 
   if (endAt <= startAt) {
     return new Response(JSON.stringify({ error: 'endAt debe ser posterior a startAt' }), {

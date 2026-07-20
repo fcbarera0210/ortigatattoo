@@ -1,27 +1,15 @@
 import { useEffect, useState } from 'react';
-import { addDaysToDateStr, endOfDay, startOfDay } from '../../lib/datetime';
+import { addDaysToDateStr, endOfDay, formatDateKey, startOfDay } from '../../lib/datetime';
 import { toast } from '../../lib/toast';
 import { useBookingBusiness } from '../../hooks/useBookingBusiness';
-import { BookingDayCard } from './BookingDayCard';
+import { BookingDayCard, type BookingCardData } from './BookingDayCard';
 import { ReservationsCalendar } from './ReservationsCalendar';
 
-type Booking = {
-  id: string;
+type Booking = BookingCardData & {
   startAt: string;
   endAt: string;
   status: string;
-  clientName: string;
-  clientEmail: string;
-  clientPhone: string;
-  serviceName: string;
 };
-
-function toDateInput(d: Date): string {
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, '0');
-  const day = String(d.getDate()).padStart(2, '0');
-  return `${y}-${m}-${day}`;
-}
 
 type ViewMode = 'list' | 'calendar';
 type StatusFilter = 'all' | 'pending' | 'confirmed';
@@ -31,7 +19,7 @@ export function AgendaView() {
   const [viewMode, setViewMode] = useState<ViewMode>('list');
   const [range, setRange] = useState<'day' | 'week'>('day');
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
-  const [date, setDate] = useState(toDateInput(new Date()));
+  const [date, setDate] = useState(() => formatDateKey(new Date()));
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   const [reloadKey, setReloadKey] = useState(0);

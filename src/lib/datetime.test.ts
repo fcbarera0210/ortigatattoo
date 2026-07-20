@@ -4,6 +4,7 @@ import {
   formatDateKey,
   formatTime,
   getDateRange,
+  parseInstantOrLocalDateTime,
   parseLocalDateTime,
   parseLocalDateTimeInput,
   startOfDay,
@@ -26,6 +27,19 @@ describe('parseLocalDateTimeInput', () => {
     const date = parseLocalDateTimeInput('2026-06-26T12:00');
     expect(formatTime(date)).toBe('12:00');
     expect(formatDateKey(date)).toBe('2026-06-26');
+  });
+});
+
+describe('parseInstantOrLocalDateTime', () => {
+  it('parses datetime-local as Argentina wall time', () => {
+    const date = parseInstantOrLocalDateTime('2026-06-26T12:00');
+    expect(date.toISOString()).toBe('2026-06-26T15:00:00.000Z');
+  });
+
+  it('parses ISO instants without reinterpreting as local wall time', () => {
+    const date = parseInstantOrLocalDateTime('2026-06-26T15:00:00.000Z');
+    expect(date.toISOString()).toBe('2026-06-26T15:00:00.000Z');
+    expect(formatTime(date)).toBe('12:00');
   });
 });
 

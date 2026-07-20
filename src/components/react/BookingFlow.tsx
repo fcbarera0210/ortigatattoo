@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { formatPriceLabel, type PriceDisplay } from '../../lib/format';
-import { formatDate, parseLocalDateTime } from '../../lib/datetime';
+import { formatDate, parseLocalDateTime, TIMEZONE } from '../../lib/datetime';
 import { toast } from '../../lib/toast';
 import { useBookingBusiness } from '../../hooks/useBookingBusiness';
 import { buildClientToStudioMessage, buildWhatsAppUrl } from '../../lib/whatsapp';
@@ -413,7 +413,8 @@ export function BookingFlow({ initialServiceId, initialFlashId }: BookingFlowPro
             ) : (
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                 {availableDates.map((d) => {
-                  const label = new Date(d + 'T12:00:00').toLocaleDateString('es-AR', {
+                  const label = parseLocalDateTime(d, '12:00').toLocaleDateString('es-AR', {
+                    timeZone: TIMEZONE,
                     weekday: 'short',
                     day: 'numeric',
                     month: 'short',

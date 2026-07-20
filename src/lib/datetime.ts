@@ -79,6 +79,13 @@ export function parseLocalDateTimeInput(localStr: string): Date {
   return parseLocalDateTime(dateStr, `${hours}:${minutes}`);
 }
 
+const DATETIME_LOCAL_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
+
+/** Accepts `YYYY-MM-DDTHH:MM` (Argentina wall clock) or any Date-parseable instant (ISO). */
+export function parseInstantOrLocalDateTime(value: string): Date {
+  return DATETIME_LOCAL_RE.test(value) ? parseLocalDateTimeInput(value) : new Date(value);
+}
+
 export function formatDateKey(date: Date): string {
   const parts = getLocalParts(date);
   const y = String(parts.year);

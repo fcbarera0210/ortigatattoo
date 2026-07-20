@@ -115,8 +115,8 @@ export function AvailabilityManager() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          startAt: startAt.toISOString(),
-          endAt: endAt.toISOString(),
+          startAt: blockForm.startAt,
+          endAt: blockForm.endAt,
           reason: blockForm.reason.trim() || null,
         }),
       });

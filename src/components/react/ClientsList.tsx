@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { formatDateTime } from '../../lib/datetime';
+import { formatDate, formatDateTime } from '../../lib/datetime';
 import { formatPhoneDisplay } from '../../lib/phone';
 import { formatPriceLabel } from '../../lib/format';
 import { buildClientWhatsAppMessage, openWhatsAppUrl } from '../../lib/whatsapp';
@@ -162,7 +162,7 @@ export function ClientsList() {
                     {client.lastBookingAt && (
                       <>
                         <span>·</span>
-                        <span>Último: {new Date(client.lastBookingAt).toLocaleDateString('es-AR')}</span>
+                        <span>Último: {formatDate(new Date(client.lastBookingAt))}</span>
                       </>
                     )}
                   </div>
@@ -183,7 +183,7 @@ export function ClientsList() {
                 <div>
                   <h2 className="font-heading text-2xl font-semibold">{detail.client.name}</h2>
                   <p className="text-sm text-muted">
-                    Cliente desde {new Date(detail.client.createdAt).toLocaleDateString('es-AR')}
+                    Cliente desde {formatDate(new Date(detail.client.createdAt))}
                   </p>
                 </div>
                 <button
