@@ -34,16 +34,22 @@ function uploadErrorResponse(e: unknown): Response {
     return new Response(
       JSON.stringify({
         error:
-          'Falta el token de Blob (BLOB_STORE_ID_WEBHOOK_PUBLIC_KEY). Configuralo en .env / Vercel y reinicia.',
+          'Falta autenticación de Blob. En Vercel necesitás `BLOB_STORE_ID_STORE_ID` (OIDC) o un token `vercel_blob_rw_...` en `BLOB_READ_WRITE_TOKEN`.',
       }),
       { status: 500, headers: { 'Content-Type': 'application/json' } },
     );
   }
   console.error('Upload error:', e);
-  return new Response(JSON.stringify({ error: 'Error al subir archivo' }), {
-    status: 500,
-    headers: { 'Content-Type': 'application/json' },
-  });
+  return new Response(
+    JSON.stringify({
+      error: 'Error al subir archivo',
+      ...(code ? { detail: code } : {}),
+    }),
+    {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    },
+  );
 }
 
 export const DELETE: APIRoute = async (context) => {
